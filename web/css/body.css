@@ -1,0 +1,79 @@
+body {
+    font-family: Arial, sans-serif;
+    color: #333;
+}
+
+
+
+/* Стили для главной секции */
+.pharmacy-info {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.pharmacy-info h1 {
+    color: #28a745; /* Зеленый цвет для заголовка */
+    margin-bottom: 20px;
+}
+
+.advantages {
+    display: flex;
+    justify-content: space-around;
+    margin-top: 30px;
+}
+
+.advantages div {
+    text-align: center;
+}
+
+.advantages i {
+    color: #28a745; /* Зеленый цвет для иконок */
+    font-size: 2em;
+    margin-bottom: 10px;
+}
+
+/* Стили для популярных товаров */
+.popular-products {
+    margin-bottom: 30px;
+}
+
+.popular-products h2 {
+    margin-bottom: 20px;
+}
+
+.product-card {
+    border: 1px solid #ddd;
+    padding: 15px;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.product-card img {
+    max-width: 100%;
+    height: auto;
+    margin-bottom: 10px;
+}
+
+.product-card h3 {
+    font-size: 1.2em;
+    margin-bottom: 5px;
+}
+
+.product-card p {
+    font-size: 0.9em;
+}
+
+/* Стили для секции "Наши аптеки" */
+.pharmacy-locations h2 {
+    margin-bottom: 20px;
+}
+
+.pharmacy-locations ul {
+    list-style: none;
+    padding: 0;
+}
+
+.pharmacy-locations li {
+    margin-bottom: 5px;
+}
+
