@@ -52,7 +52,7 @@ use yii\helpers\Html;
                     </div>
                     <div class="card-footer py-3 border-0">
                         <div class="text-center">
-                            <a href="index.html" class="text-dark">Авторизоваться</a>
+                            <?= Html::a('Авторизоваться', ['site/signup'], ['class' => 'text-dark']) ?>
                         </div>
                     </div>
 

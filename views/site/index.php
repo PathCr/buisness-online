@@ -7,8 +7,10 @@
 use yii\helpers\Html;
 use yii\helpers\Url;
 
+$this->registerJsFile('https://code.jquery.com/jquery-3.6.0.min.js', ['position' => \yii\web\View::POS_HEAD]);
+$this->registerCssFile('https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css');
+$this->registerJsFile('@web/js/search.js', ['position' => \yii\web\View::POS_END]);
 $this->registerCssFile('@web/css/body.css');
-
 
 $this->title = 'Аптечная сеть';
 ?>
@@ -37,45 +39,19 @@ $this->title = 'Аптечная сеть';
     <h2>Популярные товары</h2>
     <div class="row">
         <?php
-        // В этом месте будет код для вывода популярных товаров из базы данных
-        // Пример:
+        /* @var $products app\models\Product */
         ?>
-        <div class="col-md-3">
-            <div class="product-card">
-                <img src="" alt="Product 1">
-                <h3>Название товара 1</h3>
-                <p>Краткое описание товара 1</p>
-                <p>Цена: 100 руб.</p>
-                <?= Html::a('Купить', '#', ['class' => 'btn btn-primary']) ?>
+        <?php foreach ($products as $product): ?>
+            <div class="col-md-3">
+                <div class="product-card">
+                    <img src="<?= Html::encode($product->image) ?>" alt="<?= Html::encode($product->name) ?>">
+                    <h3><?= Html::encode($product->name) ?></h3>
+                    <p><?= Html::encode($product->description) ?></p>
+                    <p>Цена: <?= Html::encode($product->price) ?> руб.</p>
+                    <?= Html::a('Купить', ['site/buy', 'id' => $product->id], ['class' => 'btn btn-primary']) ?>
+                </div>
             </div>
-        </div>
-        <div class="col-md-3">
-            <div class="product-card">
-                <img src="" alt="Product 2">
-                <h3>Название товара 2</h3>
-                <p>Краткое описание товара 2</p>
-                <p>Цена: 150 руб.</p>
-                <?= Html::a('Купить', '#', ['class' => 'btn btn-primary']) ?>
-            </div>
-        </div>
-        <div class="col-md-3">
-            <div class="product-card">
-                <img src="" alt="Product 3">
-                <h3>Название товара 3</h3>
-                <p>Краткое описание товара 3</p>
-                <p>Цена: 200 руб.</p>
-                <?= Html::a('Купить', '#', ['class' => 'btn btn-primary']) ?>
-            </div>
-        </div>
-        <div class="col-md-3">
-            <div class="product-card">
-                <img src="" alt="Product 4">
-                <h3>Название товара 4</h3>
-                <p>Краткое описание товара 4</p>
-                <p>Цена: 250 руб.</p>
-                <?= Html::a('Купить', '#', ['class' => 'btn btn-primary']) ?>
-            </div>
-        </div>
+        <?php endforeach; ?>
     </div>
 </section>
 
@@ -98,4 +74,6 @@ $this->title = 'Аптечная сеть';
     </div>
 </section>
 
-
+<?php
+$this->registerJsFile('https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js', ['position' => \yii\web\View::POS_END]);
+?>

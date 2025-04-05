@@ -231,7 +231,8 @@ class User extends ActiveRecord implements IdentityInterface
     public function attributeLabels()
     {
         return [
-            'status' => 'Статус',
+            'username' => 'Имя',
+            'password_hash' => 'Пароль',
         ];
     }
 }

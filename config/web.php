@@ -23,6 +23,7 @@ $config = [
         'user' => [
             'identityClass' => 'app\models\User',
             'enableAutoLogin' => true,
+            'identityCookie' => ['name' => 'buisness-online', 'httpOnly' => true],
         ],
         'errorHandler' => [
             'errorAction' => 'site/error',

@@ -2,7 +2,9 @@
 
 namespace app\controllers;
 
+use app\models\Product;
 use app\models\SignupForm;
+use app\models\User;
 use Yii;
 use yii\filters\AccessControl;
 use yii\web\Controller;
@@ -62,7 +64,11 @@ class SiteController extends Controller
      */
     public function actionIndex()
     {
-        return $this->render('index');
+        $products = Product::find()->limit(4)->all();
+
+        return $this->render('index', [
+            'products' => $products,
+        ]);
     }
 
     /**
@@ -129,7 +135,20 @@ class SiteController extends Controller
 
     public function actionSignup()
     {
-        return $this->render('signup');
+        if (!Yii::$app->user->isGuest) {
+            return $this->goHome();
+        }
+
+        $model = new LoginForm();
+        if($model->load(Yii::$app->request->post()) && $model->login())
+        {
+            Yii::$app->session->setFlash('success', 'Спасибо за авторизацию!');
+            return $this->goBack();
+        }
+
+        return $this->render('signup', [
+            'model' => $model,
+        ]);
     }
 
     public function actionRegister()
