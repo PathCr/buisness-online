@@ -67,7 +67,7 @@ $this->registerLinkTag(['rel' => 'icon', 'type' => 'image/x-icon', 'href' => Yii
                         </li>
 
                         <li class="nav-item">
-                                <a class="nav-link" href="#">О нас</a>
+                            <?= Html::a('О нас', ['site/about'], ['class' => 'nav-link']) ?>
                         </li>
 
                         <li class="nav-item">
@@ -79,7 +79,9 @@ $this->registerLinkTag(['rel' => 'icon', 'type' => 'image/x-icon', 'href' => Yii
                         </li>
 
                         <li class="nav-item">
+                            <?php if (!Yii::$app->user->isGuest): ?>
                             <?= Html::a('Корзина', [''], ['class' => 'nav-link', 'data-method' => 'post']) ?>
+                            <?php endif;?>
                         </li>
 
 
@@ -88,6 +90,12 @@ $this->registerLinkTag(['rel' => 'icon', 'type' => 'image/x-icon', 'href' => Yii
                                 <?= Html::a('Регистрация', ['site/register'], ['class' => 'nav-link']) ?>
                             <?php else: ?>
                                 <?= Html::a('Выход', ['site/logout'], ['class' => 'nav-link', 'data-method' => 'post']) ?>
+                            <?php endif; ?>
+                        </li>
+
+                        <li class="nav-item">
+                            <?php if (!Yii::$app->user->isGuest): ?>
+                            <?= Html::a('Профиль', ['site/profile'], ['class' => 'nav-link']) ?>
                             <?php endif; ?>
                         </li>
                     </ul>

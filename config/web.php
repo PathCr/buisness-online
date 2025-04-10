@@ -51,6 +51,7 @@ $config = [
                 'signup' => 'site/signup',
                 'register' => 'site/register',
                 'search' => 'site/search',
+                'about' => 'site/about',
             ],
         ],
     ],

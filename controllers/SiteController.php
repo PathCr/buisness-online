@@ -12,6 +12,7 @@ use yii\web\Response;
 use yii\filters\VerbFilter;
 use app\models\LoginForm;
 use app\models\ContactForm;
+use app\assets\AboutUsAsset;
 
 class SiteController extends Controller
 {
@@ -123,13 +124,10 @@ class SiteController extends Controller
         ]);
     }
 
-    /**
-     * Displays about page.
-     *
-     * @return string
-     */
     public function actionAbout()
     {
+        AboutUsAsset::register($this->view);
+
         return $this->render('about');
     }
 
@@ -172,6 +170,10 @@ class SiteController extends Controller
 
     public function actionSearch()
     {
-        return $this->render('product/search');
+        $products = Product::find()->all();
+
+        return $this->render('product/search', [
+            'products' => $products,
+        ]);
     }
 }

@@ -1,11 +1,13 @@
 <?php
+use yii\helpers\Html;
+
 $this->registerCssFile('@web/css/search.css');
 ?>
 <div class="container">
     <div class="bg-white rounded d-flex align-items-center justify-content-between" id="header">
         <button class="btn btn-hide text-uppercase" type="button" data-toggle="collapse" data-target="#filterbar"
                 aria-expanded="false" aria-controls="filterbar" id="filter-btn" onclick="changeBtnTxt()"><span
-                    class="fas fa-angle-left" id="filter-angle"></span> <span id="btn-txt">Hide filters</span></button>
+                    class="fas fa-angle-left" id="filter-angle"></span> <span id="btn-txt">Применить фильтр</span></button>
         <nav class="navbar navbar-expand-lg navbar-light pl-lg-0 pl-auto">
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#mynav"
                     aria-controls="mynav" aria-expanded="false" aria-label="Toggle navigation" onclick="chnageIcon()"
@@ -13,20 +15,20 @@ $this->registerCssFile('@web/css/search.css');
             <div class="collapse navbar-collapse" id="mynav">
                 <ul class="navbar-nav d-lg-flex align-items-lg-center">
                     <li class="nav-item active"><select name="sort" id="sort">
-                            <option value="" hidden selected>Sort by</option>
-                            <option value="price">Price</option>
-                            <option value="popularity">Popularity</option>
-                            <option value="rating">Rating</option>
+                            <option value="" hidden selected>Сортировать</option>
+                            <option value="price">По цене</option>
+                            <option value="popularity">Популярности</option>
+                            <option value="rating">Рейтинг</option>
                         </select></li>
                     <li class="nav-item d-inline-flex align-items-center justify-content-between mb-lg-0 mb-3">
                         <div class="d-inline-flex align-items-center mx-lg-2" id="select2">
-                            <div class="pl-2">Products:</div>
+                            <div class="pl-2">Товары</div>
                             <select name="pro" id="pro">
                                 <option value="18">18</option>
                                 <option value="19">19</option>
                                 <option value="20">20</option>
                             </select></div>
-                        <div class="font-weight-bold mx-2 result">18 from 200</div>
+                        <div class="font-weight-bold mx-2 result">1 from 1</div>
                     </li>
                     <li class="nav-item d-lg-none d-inline-flex"></li>
                 </ul>
@@ -154,191 +156,17 @@ $this->registerCssFile('@web/css/search.css');
         </div>
         <div id="products">
             <div class="row mx-0">
-                <div class="col-lg-4 col-md-6">
-                    <div class="card d-flex flex-column align-items-center">
-                        <div class="product-name">Torn Jeans for Men</div>
-                        <div class="card-img"><img
-                                    src="https://www.freepnglogos.com/uploads/jeans-png/jeans-mens-pants-cliparts-download-clip-art-37.png"
-                                    alt=""></div>
-                        <div class="card-body pt-5">
-                            <div class="text-muted text-center mt-auto">Available Colors</div>
-                            <div class="d-flex align-items-center justify-content-center colors my-2">
-                                <div class="btn-group" data-toggle="buttons" data-tooltip="tooltip"
-                                     data-placement="right" title="choose color"><label
-                                            class="btn btn-red form-check-label"> <input class="form-check-input"
-                                                                                         type="radio"
-                                                                                         autocomplete="off"> </label>
-                                    <label class="btn btn-blue form-check-label active"> <input class="form-check-input"
-                                                                                                type="radio"
-                                                                                                autocomplete="off">
-                                    </label> <label class="btn btn-green form-check-label"> <input
-                                                class="form-check-input" type="radio" autocomplete="off"> </label>
-                                    <label class="btn btn-orange form-check-label"> <input class="form-check-input"
-                                                                                           type="radio"
-                                                                                           autocomplete="off"> </label>
-                                    <label class="btn btn-pink form-check-label"> <input class="form-check-input"
-                                                                                         type="radio"
-                                                                                         autocomplete="off"> </label>
-                                </div>
-                            </div>
-                            <div class="d-flex align-items-center price">
-                                <div class="del mr-2"><span class="text-dark">5500 uah</span></div>
-                                <div class="font-weight-bold">4500 uah</div>
-                            </div>
+                <?php /* @var $products app\models\Product */ ?>
+                <?php foreach ($products as $product): ?>
+                    <div class="col-lg-4 col-md-6">
+                        <div class="card d-flex flex-column align-items-center">
+                            <div class="card-img"><img src="<?= Html::encode($product->image)?>" alt="<?= Html::encode($product->name) ?>"></div>
+                            <div class="product-name"><?= Html::encode($product->name) ?></div>
+                            <p><?= Html::encode($product->description) ?></p>
+                            <p>Цена: <?= Html::encode($product->price) ?></p>
                         </div>
                     </div>
-                </div>
-                <div class="col-lg-4 col-md-6 pt-md-0 pt-3">
-                    <div class="card d-flex flex-column align-items-center">
-                        <div class="product-name">Nike Tshirts for Men</div>
-                        <div class="card-img"><img
-                                    src="https://www.freepnglogos.com/uploads/t-shirt-png/t-shirt-png-printed-shirts-south-africa-20.png"
-                                    alt="" height="100" id="shirt"></div>
-                        <div class="text-muted text-center mt-auto">Available Sizes</div>
-                        <div id="avail-size">
-                            <div class="btn-group d-flex align-items-center flex-wrap" data-toggle="buttons"><label
-                                        class="btn btn-success form-check-label"> <input class="form-check-input"
-                                                                                         type="checkbox"> 80 </label>
-                                <label class="btn btn-success form-check-label"> <input class="form-check-input"
-                                                                                        type="checkbox" checked> 92
-                                </label> <label class="btn btn-success form-check-label"> <input
-                                            class="form-check-input" type="checkbox" checked> 102 </label> <label
-                                        class="btn btn-success form-check-label"> <input class="form-check-input"
-                                                                                         type="checkbox" checked> 104
-                                </label> <label class="btn btn-success form-check-label"> <input
-                                            class="form-check-input" type="checkbox" checked> 106 </label> <label
-                                        class="btn btn-success form-check-label"> <input class="form-check-input"
-                                                                                         type="checkbox" checked> 108
-                                </label></div>
-                        </div>
-                        <div class="card-body pt-0">
-                            <div class="text-muted text-center mt-auto">Available Colors</div>
-                            <div class="d-flex align-items-center justify-content-center colors my-2">
-                                <div class="btn-group" data-toggle="buttons" data-tooltip="tooltip"
-                                     data-placement="right" title="choose color"><label
-                                            class="btn btn-light border form-check-label"> <input
-                                                class="form-check-input" type="radio" autocomplete="off"> </label>
-                                    <label class="btn btn-blue form-check-label active"> <input class="form-check-input"
-                                                                                                type="radio"
-                                                                                                autocomplete="off">
-                                    </label> <label class="btn btn-green form-check-label"> <input
-                                                class="form-check-input" type="radio" autocomplete="off"> </label>
-                                    <label class="btn btn-orange form-check-label"> <input class="form-check-input"
-                                                                                           type="radio"
-                                                                                           autocomplete="off"> </label>
-                                    <label class="btn btn-pink form-check-label"> <input class="form-check-input"
-                                                                                         type="radio"
-                                                                                         autocomplete="off"> </label>
-                                </div>
-                            </div>
-                            <div class="d-flex align-items-center price">
-                                <div class="del mr-2"><span class="text-dark">5500 uah</span></div>
-                                <div class="font-weight-bold">4500 uah</div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-4 col-md-6 pt-lg-0 pt-md-4 pt-3">
-                    <div class="card d-flex flex-column align-items-center">
-                        <div class="product-name text-center">Casual Dress Belts For Men</div>
-                        <div class="card-img"><img
-                                    src="https://www.freepnglogos.com/uploads/belts-png/casual-dress-belts-for-men-28.png"
-                                    alt=""></div>
-                        <div class="card-body pt-5">
-                            <div class="text-muted text-center mt-auto">Available Colors</div>
-                            <div class="d-flex align-items-center justify-content-center colors my-2">
-                                <div class="btn-group" data-toggle="buttons" data-tooltip="tooltip"
-                                     data-placement="right" title="choose color"><label
-                                            class="btn btn-dark border form-check-label"> <input
-                                                class="form-check-input" type="radio" autocomplete="off"> </label>
-                                    <label class="btn btn-brown form-check-label active"> <input
-                                                class="form-check-input" type="radio" autocomplete="off"> </label></div>
-                            </div>
-                            <div class="d-flex align-items-center justify-content-center price">
-                                <div class="font-weight-bold">500 uah</div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-4 col-md-6 pt-md-4 pt-3">
-                    <div class="card d-flex flex-column align-items-center">
-                        <div class="product-name text-center">Footwear For Women</div>
-                        <div class="card-img"><img
-                                    src="https://www.freepnglogos.com/uploads/women-shoes-png/download-women-shoes-png-image-png-image-pngimg-2.png"
-                                    alt=""></div>
-                        <div class="card-body pt-5">
-                            <div class="text-muted text-center mt-auto">Available Colors</div>
-                            <div class="d-flex align-items-center justify-content-center colors my-2">
-                                <div class="btn-group" data-toggle="buttons" data-tooltip="tooltip"
-                                     data-placement="right" title="choose color"><label
-                                            class="btn btn-dark border form-check-label"> <input
-                                                class="form-check-input" type="radio" autocomplete="off"> </label>
-                                    <label class="btn btn-brown form-check-label active"> <input
-                                                class="form-check-input" type="radio" autocomplete="off"> </label>
-                                    <label class="btn btn-pink form-check-label"> <input class="form-check-input"
-                                                                                         type="radio"
-                                                                                         autocomplete="off"> </label>
-                                    <label class="btn btn-red form-check-label"> <input class="form-check-input"
-                                                                                        type="radio" autocomplete="off">
-                                    </label></div>
-                            </div>
-                            <div class="d-flex align-items-center justify-content-center price">
-                                <div class="font-weight-bold">1500 uah</div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-4 col-md-6 pt-md-4 pt-3">
-                    <div class="card d-flex flex-column align-items-center">
-                        <div class="product-name text-center">Nike Jogging shoes For Men</div>
-                        <div class="card-img"><img
-                                    src="https://www.freepnglogos.com/uploads/shoes-png/find-your-perfect-running-shoes-26.png"
-                                    alt=""></div>
-                        <div class="card-body pt-5">
-                            <div class="text-muted text-center mt-auto">Available Colors</div>
-                            <div class="d-flex align-items-center justify-content-center colors my-2">
-                                <div class="btn-group" data-toggle="buttons" data-tooltip="tooltip"
-                                     data-placement="right" title="choose color"><label
-                                            class="btn btn-dark border form-check-label"> <input
-                                                class="form-check-input" type="radio" autocomplete="off"> </label>
-                                    <label class="btn btn-pink form-check-label active"> <input class="form-check-input"
-                                                                                                type="radio"
-                                                                                                autocomplete="off">
-                                    </label> <label class="btn btn-blue form-check-label"> <input
-                                                class="form-check-input" type="radio" autocomplete="off"> </label>
-                                    <label class="btn btn-orange form-check-label"> <input class="form-check-input"
-                                                                                           type="radio"
-                                                                                           autocomplete="off"> </label>
-                                </div>
-                            </div>
-                            <div class="d-flex align-items-center justify-content-center price">
-                                <div class="font-weight-bold">1200 uah</div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-4 col-md-6 pt-md-4 pt-3">
-                    <div class="card d-flex flex-column align-items-center">
-                        <div class="product-name text-center">Leather Wallets For Men</div>
-                        <div class="card-img"><img
-                                    src="https://www.freepnglogos.com/uploads/money-png/money-wallet-dollar-image-money-pictures-download-27.png"
-                                    alt=""></div>
-                        <div class="card-body pt-5">
-                            <div class="text-muted text-center mt-auto">Available Colors</div>
-                            <div class="d-flex align-items-center justify-content-center colors my-2">
-                                <div class="btn-group" data-toggle="buttons" data-tooltip="tooltip"
-                                     data-placement="right" title="choose color"><label
-                                            class="btn btn-dark border form-check-label"> <input
-                                                class="form-check-input" type="radio" autocomplete="off"> </label>
-                                    <label class="btn btn-brown form-check-label active"> <input
-                                                class="form-check-input" type="radio" autocomplete="off"> </label></div>
-                            </div>
-                            <div class="d-flex align-items-center justify-content-center price">
-                                <div class="font-weight-bold">900 uah</div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+                <?php endforeach;?>
             </div>
         </div>
     </div>

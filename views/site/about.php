@@ -7,12 +7,101 @@ use yii\helpers\Html;
 $this->title = 'About';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
-<div class="site-about">
-    <h1><?= Html::encode($this->title) ?></h1>
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>О нас - Аптечная сеть</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
 
-    <p>
-        This is the About page. You may modify the following file to customize its content:
-    </p>
+<header>
+    <div class="container">
+        <h1>О нашей аптечной сети</h1>
+        <nav>
+            <ul>
+                <li><a href="#">Главная</a></li>
+                <li><a href="#">Каталог</a></li>
+                <li><a href="#">Акции</a></li>
+                <li><a href="#">Контакты</a></li>
+            </ul>
+        </nav>
+    </div>
+</header>
 
-    <code><?= __FILE__ ?></code>
-</div>
+<main>
+    <section class="about-us">
+        <div class="container">
+            <h2>Мы - забота о вашем здоровье!</h2>
+            <p>Наша аптечная сеть - это команда профессионалов, объединенных общей целью: обеспечение населения качественными и доступными лекарственными средствами и товарами для здоровья.</p>
+
+            <h3>Наша миссия</h3>
+            <p>Мы стремимся быть надежным партнером для каждого клиента, предоставляя широкий ассортимент продукции, квалифицированные консультации и высокий уровень сервиса. Здоровье наших клиентов - наш главный приоритет.</p>
+
+            <h3>Наши ценности</h3>
+            <ul>
+                <li>**Профессионализм:**  Мы постоянно повышаем свою квалификацию и следим за новинками в области фармации.</li>
+                <li>**Ответственность:**  Мы строго соблюдаем требования законодательства и гарантируем качество нашей продукции.</li>
+                <li>**Забота:**  Мы внимательны к потребностям каждого клиента и стремимся предоставить индивидуальный подход.</li>
+                <li>**Доступность:**  Мы предлагаем широкий ассортимент товаров по конкурентным ценам.</li>
+            </ul>
+        </div>
+    </section>
+
+    <section class="team">
+        <div class="container">
+            <h2>Наша команда</h2>
+
+            <div class="team-slider">
+                <div class="team-member">
+                    <img src="" alt="Фото сотрудника 1">
+                    <h3>Иванов Иван Иванович</h3>
+                    <p>Фармацевт-консультант</p>
+                </div>
+                <div class="team-member">
+                    <img src="" alt="Фото сотрудника 2">
+                    <h3>Петрова Мария Сергеевна</h3>
+                    <p>Заведующая аптекой</p>
+                </div>
+                <div class="team-member">
+                    <img src="" alt="Фото сотрудника 3">
+                    <h3>Сидоров Алексей Петрович</h3>
+                    <p>Фармацевт</p>
+                </div>
+                <!-- Добавьте больше членов команды -->
+            </div>
+        </div>
+    </section>
+
+    <section class="license">
+        <div class="container">
+            <h2>Лицензии и сертификаты</h2>
+            <img src="" alt="Лицензия">
+            <p>Мы имеем все необходимые лицензии и сертификаты для осуществления фармацевтической деятельности.</p>
+        </div>
+    </section>
+
+    <section class="partners">
+        <div class="container">
+            <h2>Наши партнеры</h2>
+            <div class="partners-list">
+                <img src="" alt="Партнер 1">
+                <img src="" alt="Партнер 2">
+                <img src="" alt="Партнер 3">
+                <!-- Добавьте логотипы партнеров -->
+            </div>
+        </div>
+    </section>
+</main>
+
+<footer>
+    <div class="container">
+        <p>&copy; 2024 Аптечная сеть. Все права защищены.</p>
+    </div>
+</footer>
+
+<script src="js/script.js"></script>
+</body>
+</html>

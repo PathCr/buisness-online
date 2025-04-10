@@ -1,0 +1,192 @@
+/* Общие стили */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f4f4f4;
+    color: #333;
+}
+
+.container {
+    width: 80%;
+    margin: auto;
+    overflow: hidden;
+    padding: 20px 0;
+}
+
+/* Шапка */
+header {
+    background: #35424a;
+    color: #fff;
+    padding-top: 30px;
+    min-height: 70px;
+    border-bottom: #e8491d 3px solid;
+}
+
+header a {
+    color: #fff;
+    text-decoration: none;
+    text-transform: uppercase;
+    font-size: 16px;
+}
+
+header ul {
+    margin: 0;
+    padding: 0;
+}
+
+header li {
+    float: left;
+    display: inline;
+    padding: 0 20px 0 20px;
+}
+
+header nav {
+    float: right;
+    margin-top: 10px;
+}
+
+header h1 {
+    float: left;
+    margin: 0;
+}
+
+/* Основное содержимое */
+main {
+    padding: 20px 0;
+}
+
+.about-us {
+    background-color: #fff;
+    padding: 20px;
+    margin-bottom: 20px;
+    border-radius: 5px;
+}
+
+.about-us h2 {
+    color: #35424a;
+    margin-bottom: 10px;
+}
+
+.about-us h3 {
+    color: #e8491d;
+    margin-top: 15px;
+}
+
+.about-us ul {
+    list-style: disc;
+    margin-left: 20px;
+}
+
+/* Секция команды */
+.team {
+    background-color: #fff;
+    padding: 20px;
+    margin-bottom: 20px;
+    border-radius: 5px;
+}
+
+.team h2 {
+    color: #35424a;
+    margin-bottom: 10px;
+}
+
+.team-slider {
+    display: flex;
+    overflow-x: auto; /* Горизонтальная прокрутка, если не помещаются все элементы */
+    padding-bottom: 10px; /* Чтобы тень не обрезалась */
+}
+
+.team-member {
+    flex: 0 0 auto;
+    width: 300px;
+    margin-right: 20px;
+    text-align: center;
+    border: 1px solid #ddd;
+    padding: 10px;
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.team-member img {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    object-fit: cover; /* Обрезает изображение до нужной формы */
+    margin-bottom: 10px;
+}
+
+/* Лицензии */
+.license {
+    background-color: #fff;
+    padding: 20px;
+    margin-bottom: 20px;
+    border-radius: 5px;
+}
+
+.license img {
+    max-width: 100%;
+    height: auto;
+    margin-bottom: 10px;
+}
+
+/* Партнеры */
+.partners {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 5px;
+}
+
+.partners h2 {
+    color: #35424a;
+    margin-bottom: 10px;
+}
+
+.partners-list {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.partners-list img {
+    max-width: 150px;
+    height: auto;
+    margin: 10px;
+}
+
+/* Подвал */
+footer {
+    background: #35424a;
+    color: #fff;
+    text-align: center;
+    padding: 20px;
+    margin-top: 20px;
+}
+
+/* Адаптивность */
+@media(max-width: 768px) {
+    .container {
+        width: 90%;
+    }
+
+    header h1,
+    header nav {
+        float: none;
+        text-align: center;
+    }
+
+    header nav li {
+        float: none;
+        display: block;
+        text-align: center;
+    }
+
+    .team-slider {
+        overflow-x: scroll; /* Включаем горизонтальную прокрутку на маленьких экранах */
+    }
+
+    .team-member {
+        width: 250px; /* Уменьшаем ширину элемента команды */
+    }
+}

@@ -12,8 +12,50 @@ body {
 }
 
 .pharmacy-info h1 {
-    color: #28a745; /* Зеленый цвет для заголовка */
+    font-size: 2.5rem;
+    font-weight: bold;
+    color: #007b5e;
     margin-bottom: 20px;
+}
+
+.pharmacy-info p {
+    font-size: 1.1rem;
+    color: #34495e;
+    line-height: 1.6;
+    margin-bottom: 20px;
+}
+
+.advantages .col-md-4 {
+    text-align: center;
+    padding: 20px;
+    border-radius: 10px;
+    background-color: #f8f9fa;
+    margin: 10px 0;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.advantages .col-md-4:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+}
+
+.advantages .bi {
+    font-size: 2rem;
+    color: #007bff;
+    margin-bottom: 10px;
+}
+
+.advantages .col-md-4 {
+    font-size: 1.2rem;
+    color: #2c3e50;
+}
+
+.advantages .bi {
+    transition: transform 0.3s ease;
+}
+
+.advantages .col-md-4:hover .bi {
+    transform: scale(1.2);
 }
 
 .advantages {
@@ -27,7 +69,7 @@ body {
 }
 
 .advantages i {
-    color: #28a745; /* Зеленый цвет для иконок */
+    color: #007b5e; /* Зеленый цвет для иконок */
     font-size: 2em;
     margin-bottom: 10px;
 }

@@ -23,13 +23,16 @@ $this->title = 'Аптечная сеть';
     <!-- Секция с преимуществами -->
     <div class="row advantages">
         <div class="col-md-4">
-            <i class="bi bi-check-circle-fill"></i> Широкий ассортимент
+            <i class="bi bi-check-circle-fill"></i>
+            <p>Широкий ассортимент</p>
         </div>
         <div class="col-md-4">
-            <i class="bi bi-hand-thumbs-up-fill"></i> Доступные цены
+            <i class="bi bi-hand-thumbs-up-fill"></i>
+            <p>Доступные цены</p>
         </div>
         <div class="col-md-4">
-            <i class="bi bi-person-fill-gear"></i> Квалифицированные консультации
+            <i class="bi bi-person-fill-gear"></i>
+            <p>Квалифицированные консультации</p>
         </div>
     </div>
 </section>
