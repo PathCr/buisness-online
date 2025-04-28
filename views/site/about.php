@@ -4,32 +4,16 @@
 
 use yii\helpers\Html;
 
-$this->title = 'About';
-$this->params['breadcrumbs'][] = $this->title;
+$this->title = 'О нас';
 ?>
 <!DOCTYPE html>
 <html lang="ru">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>О нас - Аптечная сеть</title>
     <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
-
-<header>
-    <div class="container">
-        <h1>О нашей аптечной сети</h1>
-        <nav>
-            <ul>
-                <li><a href="#">Главная</a></li>
-                <li><a href="#">Каталог</a></li>
-                <li><a href="#">Акции</a></li>
-                <li><a href="#">Контакты</a></li>
-            </ul>
-        </nav>
-    </div>
-</header>
 
 <main>
     <section class="about-us">
@@ -95,12 +79,6 @@ $this->params['breadcrumbs'][] = $this->title;
         </div>
     </section>
 </main>
-
-<footer>
-    <div class="container">
-        <p>&copy; 2024 Аптечная сеть. Все права защищены.</p>
-    </div>
-</footer>
 
 <script src="js/script.js"></script>
 </body>

@@ -39,7 +39,8 @@ $config = [
             'targets' => [
                 [
                     'class' => 'yii\log\FileTarget',
-                    'levels' => ['error', 'warning'],
+                    'levels' => ['error', 'warning', 'info', 'trace'],
+                    'logFile' => '@runtime/logs/app.log',
                 ],
             ],
         ],
@@ -52,7 +53,18 @@ $config = [
                 'register' => 'site/register',
                 'search' => 'site/search',
                 'about' => 'site/about',
+                'create' => 'opros/create',
             ],
+        ],
+        'session' => [
+            'class' => 'yii\web\Session',
+            // 'cookieParams' => ['domain' => '.example.com'], // Если используете поддомены
+            'useCookies' => true, // Использовать куки для хранения ID сессии
+            'name' => 'PHPSESSID', // Имя куки
+            'cookieParams' => [
+                'httpOnly' => true, // Запретить доступ к куки из JavaScript
+            ],
+            'timeout' => 86400, // Срок жизни сессии в секундах (24 часа)
         ],
     ],
     'params' => $params,
