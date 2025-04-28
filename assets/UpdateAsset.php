@@ -4,13 +4,13 @@ namespace app\assets;
 
 use yii\web\AssetBundle;
 
-class OprosAsset extends AssetBundle
+class UpdateAsset extends AssetBundle
 {
     public $basePath = '@webroot';
     public $baseUrl = '@web';
 
     public $css = [
-        'css/about.css',
+        'css/update.css',
     ];
 
     public $js = [

@@ -4,13 +4,13 @@ namespace app\assets;
 
 use yii\web\AssetBundle;
 
-class OprosAsset extends AssetBundle
+class ProfileAsset extends AssetBundle
 {
     public $basePath = '@webroot';
     public $baseUrl = '@web';
 
     public $css = [
-        'css/about.css',
+        'css/profile.css',
     ];
 
     public $js = [

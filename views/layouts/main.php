@@ -86,7 +86,7 @@ $this->registerLinkTag(['rel' => 'icon', 'type' => 'image/x-icon', 'href' => Yii
 
                         <li class="nav-item">
                             <?php if (!Yii::$app->user->isGuest): ?>
-                            <?= Html::a('Профиль', ['site/profile'], ['class' => 'nav-link']) ?>
+                            <?= Html::a('Профиль', ['profile/view'], ['class' => 'nav-link']) ?>
                             <?php endif; ?>
                         </li>
 

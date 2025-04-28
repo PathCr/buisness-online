@@ -51,14 +51,16 @@ $this->title = 'Аптечная сеть';
                     <h3><?= Html::encode($product->name) ?></h3>
                     <p><?= Html::encode($product->description) ?></p>
                     <p>Цена: <?= Html::encode($product->price) ?> руб.</p>
-                    <?= Html::a('Купить', ['site/buy', 'id' => $product->id], ['class' => 'btn btn-primary']) ?>
+                    <?= Html::a('Купить', ['site/buy', 'id' => $product->id], [
+                            'class' => 'btn btn-primary',
+                            'style' => 'background-color: #007b5e; border-color: #007b5e;'
+                    ]) ?>
                 </div>
             </div>
         <?php endforeach; ?>
     </div>
 </section>
 
-<!-- Секция "Наши аптеки" с картой и списком адресов -->
 <section class="pharmacy-locations">
     <h2>Наши аптеки</h2>
     <div class="row">

@@ -24,9 +24,9 @@ $this->registerCssFile('@web/css/search.css');
                         <div class="d-inline-flex align-items-center mx-lg-2" id="select2">
                             <div class="pl-2">Товары</div>
                             <select name="pro" id="pro">
-                                <option value="18">18</option>
-                                <option value="19">19</option>
-                                <option value="20">20</option>
+                                <option value="18">1</option>
+                                <option value="19">2</option>
+                                <option value="20">3</option>
                             </select></div>
                         <div class="font-weight-bold mx-2 result">1 from 1</div>
                     </li>

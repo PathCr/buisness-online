@@ -54,6 +54,8 @@ $config = [
                 'search' => 'site/search',
                 'about' => 'site/about',
                 'create' => 'opros/create',
+                'profile' => 'profile/view',
+                'update' => 'profile/update',
             ],
         ],
         'session' => [

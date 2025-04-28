@@ -19,6 +19,8 @@ use yii\web\IdentityInterface;
  * @property int $created_at
  * @property int $updated_at
  * @property string $role
+ * @property string $first_name
+ * @property string $last_name
  */
 class User extends ActiveRecord implements IdentityInterface
 {
@@ -33,6 +35,24 @@ class User extends ActiveRecord implements IdentityInterface
     public static function tableName()
     {
         return '{{%user}}';
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function rules()
+    {
+        return [
+            [['username', 'email', 'first_name', 'last_name'], 'required'],
+            [['username', 'email', 'first_name', 'last_name'], 'trim'],
+            [['username', 'email'], 'string', 'max' => 191],
+            [['first_name', 'last_name'], 'string', 'max' => 255],
+            ['email', 'email'],
+            ['email', 'unique', 'message' => 'Этот email уже занят.'],
+            ['username', 'unique', 'message' => 'Это имя пользователя уже занято.'],
+            ['status', 'default', 'value' => self::STATUS_ACTIVE],
+            ['status', 'in', 'range' => [self::STATUS_ACTIVE, self::STATUS_INACTIVE, self::STATUS_DELETED]],
+        ];
     }
 
     /**
@@ -231,7 +251,10 @@ class User extends ActiveRecord implements IdentityInterface
     public function attributeLabels()
     {
         return [
-            'username' => 'Имя',
+            'username' => 'Имя пользователя',
+            'email' => 'Email',
+            'first_name' => 'Имя',
+            'last_name' => 'Фамилия',
             'password_hash' => 'Пароль',
         ];
     }
