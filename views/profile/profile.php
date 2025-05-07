@@ -2,7 +2,9 @@
 use yii\helpers\Html;
 use yii\bootstrap5\ActiveForm;
 
-$this->title = 'Профиль пользователя';
+/** @var $user app\models\User */
+
+$this->title = 'Профиль @' . $user->username;
 ?>
 
 <div class="profile-view">

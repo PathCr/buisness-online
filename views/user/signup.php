@@ -35,7 +35,7 @@ use yii\bootstrap5\Html;
 
                             <div class="mb-3">
                                 <div class="mb-2 w-100">
-                                    <?= Html::a('Забыл пароль', 'site/forgot', ['class' => 'float-end']) ?>
+                                    <?= Html::a('Забыл пароль', 'user/forgot', ['class' => 'float-end']) ?>
                                 </div>
                                 <?= $form->field($model, 'password_hash') ?>
                             </div>
@@ -51,7 +51,7 @@ use yii\bootstrap5\Html;
                     </div>
                     <div class="card-footer py-3 border-0">
                         <div class="text-center">
-                            Нет аккаунта? <?= Html::a('Создать', ['site/register'], ['class' => 'text-dark']) ?>
+                            Нет аккаунта? <?= Html::a('Создать', ['user/register'], ['class' => 'text-dark']) ?>
                         </div>
                     </div>
                 </div>

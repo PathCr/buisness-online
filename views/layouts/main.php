@@ -71,7 +71,7 @@ $this->registerLinkTag(['rel' => 'icon', 'type' => 'image/x-icon', 'href' => Yii
                         </li>
 
                         <li class="nav-item">
-                            <?= Html::a('Медикаменты', ['site/search'], ['class' => 'nav-link']) ?>
+                            <?= Html::a('Медикаменты', ['search/search'], ['class' => 'nav-link']) ?>
                         </li>
 
                         <li class="nav-item">
@@ -96,9 +96,9 @@ $this->registerLinkTag(['rel' => 'icon', 'type' => 'image/x-icon', 'href' => Yii
 
                         <li class="nav-item">
                             <?php if (Yii::$app->user->isGuest): ?>
-                                <?= Html::a('Регистрация', ['site/register'], ['class' => 'nav-link']) ?>
+                                <?= Html::a('Регистрация', ['user/register'], ['class' => 'nav-link']) ?>
                             <?php else: ?>
-                                <?= Html::a('Выход', ['site/logout'], ['class' => 'nav-link', 'data-method' => 'post']) ?>
+                                <?= Html::a('Выход', ['user/logout'], ['class' => 'nav-link', 'data-method' => 'post']) ?>
                             <?php endif; ?>
                         </li>
                     </ul>

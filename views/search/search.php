@@ -2,6 +2,8 @@
 use yii\helpers\Html;
 
 $this->registerCssFile('@web/css/search.css');
+
+$this->title = 'Медикаменты';
 ?>
 <div class="container">
     <div class="bg-white rounded d-flex align-items-center justify-content-between" id="header">
