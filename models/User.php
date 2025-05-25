@@ -43,8 +43,8 @@ class User extends ActiveRecord implements IdentityInterface
     public function rules()
     {
         return [
-            [['username', 'email', 'first_name', 'last_name'], 'required'],
-            [['username', 'email', 'first_name', 'last_name'], 'trim'],
+            [['username', 'email'], 'required'],
+            [['username', 'email'], 'trim'],
             [['username', 'email'], 'string', 'max' => 191],
             [['first_name', 'last_name'], 'string', 'max' => 255],
             ['email', 'email'],
@@ -243,6 +243,40 @@ class User extends ActiveRecord implements IdentityInterface
         $this->email_verification_token = null;
 
         return $this->save(false);
+    }
+
+    public static function setAdmin(string $username, string $password_hash, string $email)
+    {
+        $user = new self();
+        $user->username = $username;
+        $user->email = $email;
+        $user->setPassword($password_hash);
+        $user->generateAuthKey();
+        $user->created_at = time();
+        $user->updated_at = time();
+        $user->status = User::STATUS_ACTIVE;
+
+        if (!$user->save()) {
+            echo "Ошибка создания пользователя:\n";
+            print_r($user->getErrors());
+            return 1;
+        }
+
+        $auth = Yii::$app->authManager;
+        $adminRole = $auth->getRole('admin');
+        if ($adminRole === null) {
+            echo "Роль не найдена\n";
+            return 1;
+        }
+
+        if ($auth->assign($adminRole, $user->id)) {
+            echo "Роль админа назначена '$username' (ID: {$user->id}).\n";
+            return 0;
+        } else {
+            echo "Ошибка присваивания роли\n";
+            print_r($auth->getErrors()); // Посмотрим на ошибки.
+            return 1;
+        }
     }
 
     /**

@@ -45,7 +45,7 @@ $config = [
             ],
         ],
         'db' => $db,
-            'urlManager' => [
+        'urlManager' => [
             'enablePrettyUrl' => true,
             'showScriptName' => false,
             'rules' => [
@@ -56,6 +56,7 @@ $config = [
                 'create' => 'opros/create',
                 'profile' => 'profile/view',
                 'update' => 'profile/update',
+                'contact' => 'contact/contact',
             ],
         ],
         'session' => [
@@ -67,6 +68,9 @@ $config = [
                 'httpOnly' => true, // Запретить доступ к куки из JavaScript
             ],
             'timeout' => 86400, // Срок жизни сессии в секундах (24 часа)
+        ],
+        'authManager' => [
+            'class' => 'yii\rbac\DbManager',
         ],
     ],
     'params' => $params,

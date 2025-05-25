@@ -4,7 +4,7 @@ use yii\bootstrap5\ActiveForm;
 
 /** @var $user app\models\User */
 
-$this->title = 'Профиль @' . $user->username;
+$this->title = '@' . $user->username;
 ?>
 
 <div class="profile-view">

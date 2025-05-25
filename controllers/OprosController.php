@@ -22,7 +22,7 @@ class OprosController extends Controller
                         'roles' => ['@'],
                     ],
                 ],
-                'denyCallback' => function ($rule, $action) {
+                'denyCallback' => function () {
                     throw new ForbiddenHttpException('Доступ запрещен. Необходимо авторизоваться.');
                 }
             ],

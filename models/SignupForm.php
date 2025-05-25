@@ -2,6 +2,7 @@
 
 namespace app\models;
 
+use Yii;
 use yii\base\Model;
 
 class SignupForm extends Model
@@ -17,16 +18,18 @@ class SignupForm extends Model
     public function rules()
     {
         return [
-            [['username', 'password_hash', 'email'], 'required', 'message' => 'Поле "Имя" обязательно для заполнения.'],
-            [['username', 'password_hash', 'email'], 'trim'],
-
+            ['username', 'trim'],
+            [['username'], 'required', 'message' => 'Обязательно для заполнения'],
+            ['username', 'unique', 'targetClass' => '\app\models\User', 'message' => 'Это имя пользователя уже занято.'],
             ['username', 'string', 'min' => 2, 'max' => 255],
-            ['username', 'unique', 'targetClass' => 'app\models\User', 'message' => 'This username has already been taken.'],
 
+            ['email', 'trim'],
+            [['email'], 'required', 'message' => 'Обязательно для заполнения'],
             ['email', 'email'],
             ['email', 'string', 'max' => 255],
-            ['email', 'unique', 'targetClass' => 'app\models\User', 'message' => 'This email has already been taken.'],
+            ['email', 'unique', 'targetClass' => '\app\models\User', 'message' => 'Этот email уже занят.'],
 
+            [['password_hash'], 'required', 'message' => 'Обязательно для заполнения'   ],
             ['password_hash', 'string', 'min' => 6],
         ];
     }
@@ -43,7 +46,7 @@ class SignupForm extends Model
     public function signup()
     {
         if (!$this->validate()) {
-            return false;
+            return null;
         }
 
         $user = new User();
@@ -53,8 +56,16 @@ class SignupForm extends Model
         $user->generateAuthKey();
         $user->created_at = time();
         $user->updated_at = time();
-        $user->role = 'customer';
 
-        return $user->save() ? $user : null;
+        if ($user->save()) {
+            $auth = Yii::$app->authManager;
+            $role = $auth->getRole('user');
+            $auth->assign($role, $user->id);
+            $assignedRoles = $auth->getRolesByUser($user->id);
+            print_r($assignedRoles); // Вывод всех ролей пользователя
+            return $user;
+        }
+
+        return null;
     }
 }

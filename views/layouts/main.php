@@ -9,10 +9,13 @@ use yii\bootstrap5\Breadcrumbs;
 use yii\bootstrap5\Html;
 use yii\bootstrap5\Nav;
 use yii\bootstrap5\NavBar;
+use yii\bootstrap5\Dropdown;
 
 AppAsset::register($this);
 
 $this->registerCssFile('//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css');
+//$this->registerCssFile('https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css');
+$this->registerJsFile('https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js');
 $this->registerCsrfMetaTags();
 $this->registerMetaTag(['charset' => Yii::$app->charset], 'charset');
 $this->registerMetaTag(['name' => 'viewport', 'content' => 'width=device-width, initial-scale=1, shrink-to-fit=no']);
@@ -32,7 +35,6 @@ $this->registerLinkTag(['rel' => 'icon', 'type' => 'image/x-icon', 'href' => Yii
 
 <header id="header">
 
-    <?php $this->registerJsFile("//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js", ) ?>
     <?php $this->registerJsFile("//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js") ?>
 
     <!-- Navigation -->
@@ -54,7 +56,7 @@ $this->registerLinkTag(['rel' => 'icon', 'type' => 'image/x-icon', 'href' => Yii
         </header>
         <nav class="navbar navbar-expand-lg navbar-dark mx-background-top-linear">
             <div class="container">
-                <a class="navbar-brand" rel="nofollow" target="_blank" href="#" style="text-transform: uppercase;"> Аптечная сеть</a>
+                <?= Html::a('Аптечная сеть', ['site/index'], ['class' => 'navbar-brand', 'style' => 'text-transform: uppercase;']) ?>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
@@ -75,31 +77,25 @@ $this->registerLinkTag(['rel' => 'icon', 'type' => 'image/x-icon', 'href' => Yii
                         </li>
 
                         <li class="nav-item">
-                            <a class="nav-link" href="#">Контакты</a>
+                            <?= Html::a('Контакты', ['contact/contact'], ['class' => 'nav-link', 'data-method' => 'post']) ?>
                         </li>
 
-                        <li class="nav-item">
-                            <?php if (!Yii::$app->user->isGuest): ?>
-                            <?= Html::a('Корзина', [''], ['class' => 'nav-link', 'data-method' => 'post']) ?>
-                            <?php endif;?>
-                        </li>
-
-                        <li class="nav-item">
-                            <?php if (!Yii::$app->user->isGuest): ?>
-                            <?= Html::a('Профиль', ['profile/view'], ['class' => 'nav-link']) ?>
-                            <?php endif; ?>
-                        </li>
-
-                        <li class="nav-item">
-                            <?= Html::a('Опрос', ['opros/create'], ['class' => 'nav-link']) ?>
-                        </li>
-
-                        <li class="nav-item">
-                            <?php if (Yii::$app->user->isGuest): ?>
-                                <?= Html::a('Регистрация', ['user/register'], ['class' => 'nav-link']) ?>
-                            <?php else: ?>
-                                <?= Html::a('Выход', ['user/logout'], ['class' => 'nav-link', 'data-method' => 'post']) ?>
-                            <?php endif; ?>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button">
+                                Меню
+                            </a>
+                            <ul class="dropdown-menu">
+                                <?php if (!Yii::$app->user->isGuest): ?>
+                                    <li><?= Html::a('Корзина', [''], ['class' => 'dropdown-item', 'data-method' => 'post']) ?></li>
+                                    <li><?= Html::a('Профиль', ['profile/view'], ['class' => 'dropdown-item']) ?></li>
+                                <?php endif; ?>
+                                <li><?= Html::a('Опрос', ['opros/create'], ['class' => 'dropdown-item']) ?></li>
+                                <?php if (Yii::$app->user->isGuest): ?>
+                                    <li><?= Html::a('Вход', ['user/register'], ['class' => 'dropdown-item']) ?></li>
+                                <?php else: ?>
+                                    <li><?= Html::a('Выход', ['user/logout'], ['class' => 'dropdown-item', 'data-method' => 'post']) ?></li>
+                                <?php endif; ?>
+                            </ul>
                         </li>
                     </ul>
                 </div>
@@ -121,25 +117,8 @@ $this->registerLinkTag(['rel' => 'icon', 'type' => 'image/x-icon', 'href' => Yii
 <footer id="footer" class="mt-auto py-3 bg-light" style="background-color: #54d400; color: white; padding: 20px; text-align: center;">
     <div class="container">
         <p class="float-start">&copy; <?= Html::encode(Yii::$app->name) ?> <?= date('Y') ?></p>
-        <p class="float-end">
-            <?php
-             echo Html::a('About', ['/about'], ['class' => 'text-white']);
-             echo ' | ';
-             echo Html::a('Contact', ['/contact'], ['class' => 'text-white']);
-            ?>
-        </p>
     </div>
 </footer>
-<style>
-    .footer a {
-        color: white;
-        text-decoration: none;
-    }
-
-    .footer a:hover {
-        text-decoration: underline;
-    }
-</style>
 
 <?php $this->endBody() ?>
 </body>
