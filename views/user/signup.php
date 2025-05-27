@@ -8,6 +8,7 @@
 use yii\bootstrap5\ActiveForm;
 use yii\bootstrap5\Html;
 
+$this->title = 'Авторизация';
 ?>
 <!DOCTYPE html>
 <html lang="en">

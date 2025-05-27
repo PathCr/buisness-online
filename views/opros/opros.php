@@ -93,12 +93,12 @@ $this->registerCss("
         ['prompt' => 'Выберите вариант']
     ) ?>
 
-    <?= $form->field($model, 'gender')->dropDownList([
-        'Мужской' => 'Мужской',
-        'Женский' => 'Женский',
-    ], ['prompt' => 'Выберите пол']) ?>
+    <?= $form->field($model, 'question11')->dropDownList(
+        OprosOptions::getOptionsForQuestion(11),
+        ['prompt' => 'Выберите пол']
+    ) ?>
 
-    <?= $form->field($model, 'age')->textInput() ?>
+    <?= $form->field($model, 'question12')->textInput() ?>
 
     <div class="form-group">
         <?= Html::submitButton('Сохранить', ['class' => 'btn btn-success']) ?>

@@ -33,10 +33,10 @@ class OprosController extends Controller
     {
         AboutUsAsset::register($this->view);
 
-        if (Opros::find()->where(['user_id' => Yii::$app->user->id])->exists()) {
-            Yii::$app->session->setFlash('warning', 'Вы уже проходили этот опрос.');
-            return $this->goBack(); // Перенаправляем на главную страницу или куда-то еще
-        }
+//        if (Opros::find()->where(['user_id' => Yii::$app->user->id])->exists()) {
+//            Yii::$app->session->setFlash('warning', 'Вы уже проходили этот опрос.');
+//            return $this->goBack(); // Перенаправляем на главную страницу или куда-то еще
+//        }
 
         $model = new Opros();
 

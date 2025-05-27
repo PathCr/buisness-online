@@ -15,10 +15,10 @@ class Opros extends ActiveRecord
     public function rules()
     {
         return [
-            [['question1', 'question2', 'question3', 'question4', 'question6', 'question8', 'question9', 'question10', 'question5', 'gender'], 'string'],
-            [['question1', 'question2', 'question3', 'question4', 'question6', 'question8', 'question9', 'question10', 'age'], 'required',
+            [['question1', 'question2', 'question3', 'question4', 'question6', 'question8', 'question9', 'question10', 'question5', 'question11'], 'string'],
+            [['question1', 'question2', 'question3', 'question4', 'question6', 'question8', 'question9', 'question10', 'question12'], 'required',
                 'message' => 'Обязательное поле'],
-            [['age', 'user_id'], 'integer'],
+            [['question12', 'user_id'], 'integer'],
             [['user_id'], 'exist', 'skipOnError' => true, 'targetClass' => User::class, 'targetAttribute' => ['user_id' => 'id']],
         ];
     }
@@ -36,8 +36,8 @@ class Opros extends ActiveRecord
             'question8' => 'Готовы ли вы получать консультации в аптеке?',
             'question9' => 'Насколько вы доверяете информации о здоровье, которую предоставляет фармацевт?',
             'question10' => 'Как вы считаете, уместно ли продавать в аптеке товары, связанные с алкоголем?',
-            'gender' => 'Ваш пол',
-            'age' => 'Ваш возраст',
+            'question11' => 'Ваш пол',
+            'question12' => 'Ваш возраст',
         ];
     }
 

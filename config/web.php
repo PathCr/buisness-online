@@ -57,6 +57,8 @@ $config = [
                 'profile' => 'profile/view',
                 'update' => 'profile/update',
                 'contact' => 'contact/contact',
+                'admin' => 'admin/view',
+                'export' => 'export-opros',
             ],
         ],
         'session' => [

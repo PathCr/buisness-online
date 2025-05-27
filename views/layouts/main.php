@@ -7,9 +7,7 @@ use app\assets\AppAsset;
 use app\widgets\Alert;
 use yii\bootstrap5\Breadcrumbs;
 use yii\bootstrap5\Html;
-use yii\bootstrap5\Nav;
-use yii\bootstrap5\NavBar;
-use yii\bootstrap5\Dropdown;
+use yii\bootstrap5\ActiveForm;
 
 AppAsset::register($this);
 
@@ -61,25 +59,19 @@ $this->registerLinkTag(['rel' => 'icon', 'type' => 'image/x-icon', 'href' => Yii
                     <span class="navbar-toggler-icon"></span>
                 </button>
                 <div class="collapse navbar-collapse" id="navbarResponsive">
-
-                    <ul class="navbar-nav ml-auto">
-
+                    <?php $form = ActiveForm::begin(['action' => ['user/logout'], 'method' => 'post', 'options' => ['class' => 'navbar-nav ml-auto']]); ?>
                         <li class="nav-item active">
                             <?= Html::a('Главная', ['site/index'], ['class' => 'nav-link']) ?>
                         </li>
-
                         <li class="nav-item">
                             <?= Html::a('О нас', ['site/about'], ['class' => 'nav-link']) ?>
                         </li>
-
                         <li class="nav-item">
                             <?= Html::a('Медикаменты', ['search/search'], ['class' => 'nav-link']) ?>
                         </li>
-
                         <li class="nav-item">
                             <?= Html::a('Контакты', ['contact/contact'], ['class' => 'nav-link', 'data-method' => 'post']) ?>
                         </li>
-
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button">
                                 Меню
@@ -93,11 +85,16 @@ $this->registerLinkTag(['rel' => 'icon', 'type' => 'image/x-icon', 'href' => Yii
                                 <?php if (Yii::$app->user->isGuest): ?>
                                     <li><?= Html::a('Вход', ['user/register'], ['class' => 'dropdown-item']) ?></li>
                                 <?php else: ?>
-                                    <li><?= Html::a('Выход', ['user/logout'], ['class' => 'dropdown-item', 'data-method' => 'post']) ?></li>
+                                    <li><?= Html::submitButton('Выход', ['class' => 'dropdown-item']) ?></li>
                                 <?php endif; ?>
                             </ul>
                         </li>
-                    </ul>
+                        <?php if (Yii::$app->user->can('admin')): ?>
+                            <li class="nav-item">
+                                <?= Html::a('Админка', ['admin/view'], ['class' => 'nav-link', 'data-method' => 'post']) ?>
+                            </li>
+                        <?php endif; ?>
+                    <?php ActiveForm::end(); ?>
                 </div>
             </div>
         </nav>

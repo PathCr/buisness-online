@@ -6,6 +6,7 @@ use yii\helpers\Html;
 /* @var $this yii\web\View */
 /* @var $model app\models\SignupForm */
 
+$this->title = 'Регистрация';
 ?>
 
 <!DOCTYPE html>
