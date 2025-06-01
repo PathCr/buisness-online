@@ -5,7 +5,13 @@
 
 actor: UnitTester
 modules:
-    enabled:
-      - Asserts
-      - Yii2:
-            part: [orm, email, fixtures]
+  enabled:
+    - Asserts
+    - Yii2:
+        part: [orm, email, fixtures]
+    - Db:
+        dsn: 'mysql:host=localhost;dbname=med-network'  # Укажите ваши параметры подключения
+        user: 'root'  # Укажите имя пользователя
+        password: ''  # Укажите пароль
+        cleanup: true  # Очищать базу данных после тестов
+        populate: true  # Заполнять базу данных перед тестами

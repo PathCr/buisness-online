@@ -59,6 +59,11 @@ $config = [
                 'contact' => 'contact/contact',
                 'admin' => 'admin/view',
                 'export' => 'export-opros',
+                'cart/add' => 'cart/add',
+                'cart/remove' => 'cart/remove',
+                'cart/update' => 'cart/update',
+                'cart/view' => 'cart/view',
+                'cart/count' => 'cart/count',
             ],
         ],
         'session' => [

@@ -9,6 +9,11 @@ use yii\bootstrap5\ActiveForm;
 
 $this->title = 'Админка';
 
+/**
+ * @var yii\bootstrap5\ActiveForm $model
+ * @var app\models\User $users
+ */
+
 ?>
 
 <div class="container d-flex justify-content-center">

@@ -29,7 +29,7 @@ class SignupForm extends Model
             ['email', 'string', 'max' => 255],
             ['email', 'unique', 'targetClass' => '\app\models\User', 'message' => 'Этот email уже занят.'],
 
-            [['password_hash'], 'required', 'message' => 'Обязательно для заполнения'   ],
+            [['password_hash'], 'required', 'message' => 'Обязательно для заполнения'],
             ['password_hash', 'string', 'min' => 6],
         ];
     }
@@ -46,7 +46,7 @@ class SignupForm extends Model
     public function signup()
     {
         if (!$this->validate()) {
-            return null;
+            return false;
         }
 
         $user = new User();
@@ -58,11 +58,11 @@ class SignupForm extends Model
         $user->updated_at = time();
 
         if ($user->save()) {
-            $auth = Yii::$app->authManager;
-            $role = $auth->getRole('user');
-            $auth->assign($role, $user->id);
-            $assignedRoles = $auth->getRolesByUser($user->id);
-            print_r($assignedRoles); // Вывод всех ролей пользователя
+//            $auth = Yii::$app->authManager;
+//            $role = $auth->getRole('user');
+//            $auth->assign($role, $user->id);
+//            $assignedRoles = $auth->getRolesByUser($user->id);
+//            print_r($assignedRoles); // Вывод всех ролей пользователя
             return $user;
         }
 

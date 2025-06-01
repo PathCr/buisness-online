@@ -5,6 +5,7 @@
 
 use app\assets\AppAsset;
 use app\widgets\Alert;
+use yii\helpers\Url;
 use yii\bootstrap5\Breadcrumbs;
 use yii\bootstrap5\Html;
 use yii\bootstrap5\ActiveForm;
@@ -78,7 +79,7 @@ $this->registerLinkTag(['rel' => 'icon', 'type' => 'image/x-icon', 'href' => Yii
                             </a>
                             <ul class="dropdown-menu">
                                 <?php if (!Yii::$app->user->isGuest): ?>
-                                    <li><?= Html::a('Корзина', [''], ['class' => 'dropdown-item', 'data-method' => 'post']) ?></li>
+                                    <li><?= Html::a('Корзина', ['cart/view'], ['class' => 'dropdown-item', 'data-method' => 'post']) ?></li>
                                     <li><?= Html::a('Профиль', ['profile/view'], ['class' => 'dropdown-item']) ?></li>
                                 <?php endif; ?>
                                 <li><?= Html::a('Опрос', ['opros/create'], ['class' => 'dropdown-item']) ?></li>
@@ -116,7 +117,12 @@ $this->registerLinkTag(['rel' => 'icon', 'type' => 'image/x-icon', 'href' => Yii
         <p class="float-start">&copy; <?= Html::encode(Yii::$app->name) ?> <?= date('Y') ?></p>
     </div>
 </footer>
-
+<?php
+    $this->registerJsFile(
+            Url::to('js/cart.js'),
+        ['depends' => [\yii\web\JqueryAsset::class]],
+    );
+?>
 <?php $this->endBody() ?>
 </body>
 </html>

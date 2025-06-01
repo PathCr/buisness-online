@@ -51,9 +51,10 @@ $this->title = 'Аптечная сеть';
                     <h3><?= Html::encode($product->name) ?></h3>
                     <p><?= Html::encode($product->description) ?></p>
                     <p>Цена: <?= Html::encode($product->price) ?> руб.</p>
-                    <?= Html::a('Купить', ['site/buy', 'id' => $product->id], [
-                            'class' => 'btn btn-primary',
-                            'style' => 'background-color: #007b5e; border-color: #007b5e;'
+                    <?= Html::a('Купить', ['#', 'id' => $product->id], [
+                            'class' => 'btn btn-primary add-to-cart',
+                            'style' => 'background-color: #007b5e; border-color: #007b5e;',
+                            'data-id' => $product->id,
                     ]) ?>
                 </div>
             </div>
