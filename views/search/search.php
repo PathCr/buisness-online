@@ -2,6 +2,8 @@
 use yii\helpers\Html;
 
 $this->registerCssFile('@web/css/search.css');
+$this->registerJsFile('@web/js/search.js', ['depends' => [\yii\web\JqueryAsset::class]]);
+
 
 $this->title = 'Медикаменты';
 ?>

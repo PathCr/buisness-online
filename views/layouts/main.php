@@ -12,8 +12,45 @@ use yii\bootstrap5\ActiveForm;
 
 AppAsset::register($this);
 
-$this->registerCssFile('//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css');
-//$this->registerCssFile('https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css');
+$this->registerCss("
+.modal {
+    display: none; /* Скрыто по умолчанию */
+    position: fixed; 
+    z-index: 1000; /* Убедитесь, что модальное окно выше других элементов */
+    left: 80%; /* Центрируем по горизонтали */
+    top: 100px; /* Установите значение, чтобы модальное окно было ниже */
+    transform: translateX(-50%); /* Сдвигаем только по горизонтали */
+    width: 300px; /* Установите желаемую ширину */
+    height: auto; /* Высота будет автоматически подстраиваться под содержимое */
+    overflow: auto; 
+    background-color: rgb(0,0,0); 
+    background-color: rgba(0,0,0,0.4); 
+}
+
+.modal-content {
+    background-color: #fefefe;
+    padding: 20px;
+    border: 1px solid #888;
+    border-radius: 5px; /* Добавляем скругление углов */
+    width: 100%; /* Занимает всю ширину родителя */
+}
+
+.close {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+}
+");
+//$this->registerCssFile('//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css');
+$this->registerCssFile('https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css');
 $this->registerJsFile('https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js');
 $this->registerCsrfMetaTags();
 $this->registerMetaTag(['charset' => Yii::$app->charset], 'charset');
@@ -79,7 +116,7 @@ $this->registerLinkTag(['rel' => 'icon', 'type' => 'image/x-icon', 'href' => Yii
                             </a>
                             <ul class="dropdown-menu">
                                 <?php if (!Yii::$app->user->isGuest): ?>
-                                    <li><?= Html::a('Корзина', ['cart/view'], ['class' => 'dropdown-item', 'data-method' => 'post']) ?></li>
+                                <li><a href="#" class="dropdown-item cart-icon">Корзина</a></li>
                                     <li><?= Html::a('Профиль', ['profile/view'], ['class' => 'dropdown-item']) ?></li>
                                 <?php endif; ?>
                                 <li><?= Html::a('Опрос', ['opros/create'], ['class' => 'dropdown-item']) ?></li>
@@ -111,6 +148,34 @@ $this->registerLinkTag(['rel' => 'icon', 'type' => 'image/x-icon', 'href' => Yii
         <?= $content ?>
     </div>
 </main>
+
+<div id="cart-modal" class="modal">
+    <div class="modal-content">
+        <span class="close">&times;</span>
+        <div class="cart-container">
+            <?php if (!empty($products)): ?>
+                <?php foreach ($products as $product): ?>
+                    <div class="product">
+                        <h3><?= $product->name ?></h3>
+                        <p>Цена: <?= $product->price ?> руб.</p>
+                        <p>Количество:
+                            <input type="number" class="cart-quantity" data-id="<?= $product->id ?>" value="<?= $product->quantity ?>" min="1">
+                        </p>
+
+                        <!-- Кнопка изменения количества -->
+                        <button class="update-quantity" data-id="<?= $product->id ?>">Изменить количество</button>
+
+                        <!-- Кнопка удаления товара -->
+                        <button class="remove-from-cart" data-id="<?= $product->id ?>">Удалить</button>
+                    </div>
+                <?php endforeach; ?>
+            <?php else: ?>
+                <p>Корзина пуста.</p>
+            <?php endif; ?>
+        </div>
+        <p>Итого: <span id="cart-total"></span></p>
+    </div>
+</div>
 
 <footer id="footer" class="mt-auto py-3 bg-light" style="background-color: #54d400; color: white; padding: 20px; text-align: center;">
     <div class="container">

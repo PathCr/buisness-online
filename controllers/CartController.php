@@ -27,6 +27,14 @@ class CartController extends Controller
         ];
     }
 
+    public function actionView()
+    {
+        // Логика для получения данных о корзине
+        $cartItems = Cart::find()->where(['user_id' => Yii::$app->user->id])->all();
+        // Возвращаем данные в формате JSON
+        return $this->asJson($cartItems);
+    }
+
     public function actionAdd($id)
     {
         Yii::$app->response->format = Response::FORMAT_JSON;
@@ -106,16 +114,37 @@ class CartController extends Controller
         return ['success' => false, 'message' => 'Товар не найден в корзине'];
     }
 
-    public function actionView()
+    public function actionGetCart()
     {
+        Yii::$app->response->format = Response::FORMAT_JSON;
+
         if (Yii::$app->user->isGuest) {
-            return $this->renderPartial('_cart', ['cart' => [], 'total' => 0]);
+            return ['success' => false, 'message' => 'Необходимо авторизоваться'];
         }
 
         $cartItems = Cart::find()->where(['user_id' => Yii::$app->user->id])->all();
-        $total = $this->calculateTotal();
+        $total = 0;
+        $cartData = [];
 
-        return $this->renderPartial('_cart', ['cart' => $cartItems, 'total' => $total]);
+        foreach ($cartItems as $item) {
+            $product = Product::findOne($item->product_id); // Предполагается, что у вас есть связь с продуктом
+            if ($product) {
+                $cartData[] = [
+                    'product' => [
+                        'name' => $product->name,
+                        'price' => $product->price,
+                    ],
+                    'quantity' => $item->quantity,
+                ];
+                $total += $product->price * $item->quantity; // Считаем общую стоимость
+            }
+        }
+
+        return [
+            'success' => true,
+            'cart' => $cartData,
+            'total' => $total,
+        ];
     }
 
     private function calculateTotal()
@@ -146,5 +175,26 @@ class CartController extends Controller
             'success' => true,
             'count' => $this->getCartCount(),
         ];
+    }
+
+    public function actionCart()
+    {
+        if (Yii::$app->user->isGuest) {
+            return $this->redirect(['site/index']); // Перенаправление для неавторизованных пользователей
+        }
+
+        $cartItems = Cart::find()->where(['user_id' => Yii::$app->user->id])->all();
+        $products = []; // Массив для хранения товаров
+
+        foreach ($cartItems as $item) {
+            $product = Product::findOne($item->product_id);
+            if ($product) {
+                $products[] = $product; // Добавляем товар в массив
+            }
+        }
+
+        return $this->render('cart', [
+            'products' => $products, // Передаем массив товаров в представление
+        ]);
     }
 }
